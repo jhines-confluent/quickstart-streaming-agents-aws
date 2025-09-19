@@ -18,7 +18,7 @@ You will see a compute pool created for you. Click on **Open SQL Workspace**
 
 First, we need to enrich incoming Orders with product names, then search for and scrape these products from competitors’ websites. We’ll achieve this using Flink’s Tool Calling feature, which will enable Flink to invoke the Zapier MCP server we previously created.
 
-![Agent 1: Price matching agent](../assets/lab1/agent1-diagram.png)
+![Agent 1: Price matching agent](../assets/lab1/agent1-diagram-aws.png)
 
 In the Flink workspace, register the model and bind the tool to it in the Confluent catalog:
 
@@ -71,7 +71,7 @@ This agent uses the `product_name` as an input to URL scraping tool. The output 
 
 Agent 2 will take `recent_orders_scraped` topic as an input and extract the competitor price from the `page_content` field.
 
-![Agent 2: Price extractor agent](../assets/lab1/agent2-diagram.png)
+![Agent 2: Price extractor agent](../assets/lab1/agent2-diagram-aws.png)
 
 In Flink workspace, register the model for Agent 2 in Confluent catalog:
 
@@ -133,7 +133,7 @@ Notice the new field `extracted_price`. This will be used by the next Agent.
 In this step, we’ll notify the customer when a price match has been applied.  
 We’ll again use Confluent Cloud’s tool-calling feature — this time connecting to the Zapier MCP server to trigger an email or message to the customer.
 
-![Agent 3: Price Match Notification Agent](../assets/lab1/agent3-diagram.png)
+![Agent 3: Price Match Notification Agent](../assets/lab1/agent3-diagram-aws.png)
 
 We don’t need to register a new model here. Instead, we’ll reuse the one from Agent 1, since both agents use the same Zapier MCP server and share the same tools.  For this agent, the tool is `gmail_send_email`.
 
