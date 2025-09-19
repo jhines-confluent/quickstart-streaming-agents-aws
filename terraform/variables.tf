@@ -6,12 +6,12 @@ variable "prefix" {
 
 # Variables for cloud provider selection
 variable "cloud_provider" {
-  description = "Cloud provider to use (AWS or AZURE)"
+  description = "Cloud provider to use (AWS)"
   type        = string
   default     = "AWS"
   validation {
-    condition     = contains(["AWS", "AZURE"], upper(var.cloud_provider))
-    error_message = "Cloud provider must be either 'AWS' or 'AZURE' (case insensitive)."
+    condition     = contains(["AWS"], upper(var.cloud_provider))
+    error_message = "Cloud provider must be either 'AWS' (case insensitive)."
   }
 }
 
