@@ -24,17 +24,17 @@ In the Flink workspace, register the model and bind the tool to it in the Conflu
 
 > **Note:**  
 > If you changed the `prefix`, retrieve the updated query from `mcp_commands.txt` in the Terraform directory.  
-> The example below uses Azure OpenAI. If you are using Amazon Bedrock, use the corresponding query from `mcp_commands.txt`.
-
+> The example below uses Amazon Bedrock.
 
 ```sql
   CREATE MODEL `zapier_mcp_model`
   INPUT (prompt STRING)
   OUTPUT (response STRING)
   WITH (
-    'provider' = 'azureopenai',
+    'provider' = 'bedrock',
     'task' = 'text_generation',
-    'azureopenai.connection' = 'streaming-agents-azure-openai-connection',
+    'bedrock.connection' = 'streaming-agents-bedrock-connection',
+    'bedrock.params.max_tokens' = '20000',
     'mcp.connection' = 'zapier-mcp-connection'
   );
 ```
@@ -77,16 +77,17 @@ In Flink workspace, register the model for Agent 2 in Confluent catalog:
 
 > **Note:**  
 > If you changed the `prefix`, retrieve the updated query from `mcp_commands.txt` in the Terraform directory.  
-> The example below uses Azure OpenAI. If you are using Amazon Bedrock, use the corresponding query from `mcp_commands.txt`.
+> The example below uses Amazon Bedrock.
 
 ```sql
   CREATE MODEL `llm_textgen_model`
   INPUT (prompt STRING)
   OUTPUT (response STRING)
   WITH(
-     'provider' = 'azureopenai',
-     'task' = 'text_generation',
-     'azureopenai.connection' = 'streaming-agents-azure-openai-connection'
+    'provider' = 'bedrock',
+    'task' = 'text_generation',
+    'bedrock.connection' = 'jhines-streaming-agents-bedrock-connection',
+    'bedrock.params.max_tokens' = '20000'
   );
 ```
 
