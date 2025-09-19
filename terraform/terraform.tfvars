@@ -2,10 +2,10 @@
 prefix = "streaming-agents"
 
 # Required: Choose your cloud provider
-cloud_provider = "azure"  # or "AWS"
+cloud_provider = "AWS" 
 
 # Required: Choose your region (see supported regions below)
-cloud_region = "eastus"
+cloud_region = "us-east-2"
 
 # Required: Confluent Cloud credentials (or use environment variables)
 confluent_cloud_api_key = "your-confluent-api-key"
