@@ -76,7 +76,7 @@ Before proceeding with any other steps, you **must** complete these essential pr
 
 ## 📋 Install Required Software
 
-- **AWS CLI or Azure CLI** 
+- **AWS CLI** 
 - **Confluent CLI**
 - **Docker**
 - **Terraform**
@@ -167,11 +167,6 @@ Fill out the values for `prefix`, `cloud_provider`, `cloud_region`, `confluent_c
 <details>
 <summary><strong>📋 Supported Regions</strong> (Click to expand)</summary>
 
-**Azure Regions:**
-- **US**: East US, East US 2, Central US, North Central US, South Central US, West US, West US 2, West US 3
-- **Europe**: North Europe, West Europe, UK South, UK West, France Central, Germany West Central
-- **Asia**: East Asia, Southeast Asia, Japan East, Japan West, Korea Central, Korea South
-
 **AWS Regions:**
 - **US**: us-east-1, us-east-2, us-west-2
 - **Europe**: eu-west-1, eu-west-2, eu-central-1
@@ -179,7 +174,7 @@ Fill out the values for `prefix`, `cloud_provider`, `cloud_region`, `confluent_c
 
 </details>
 
-### 2A. [AWS ONLY] 🔓 Enable Claude Sonnet 3.7
+### 2A. 🔓 Enable Claude Sonnet 3.7
 
 <details>
 <summary>🔧 Extra step required for AWS users</summary>
@@ -200,30 +195,6 @@ To enable **Claude 3.7 Sonnet** in your AWS account via Amazon Bedrock:
 
 ### 3. Deploy with Terraform
 
-
-<details>
-<summary>Deploying on Azure</summary>
-
-1. Enable the `providers-azure.tf` file
-
-macOS:
-
-```bash
-mv providers-azure.tf.disabled providers-azure.tf 
-```
-Windows:
-
-```bash
-rename providers-azure.tf.disabled providers-azure.tf
-```
-2. Apply the terraform script
-
-```bash
-terraform init
-terraform apply --auto-approve
-```
-
-</details>
 
 <details>
 <summary>Deploying on AWS</summary>
@@ -279,8 +250,8 @@ To enable **Flink tool calling**, you also need to create a Flink connection to 
   
    ```bash
    confluent flink connection create zapier-mcp-connection \
-     --cloud AZURE \
-     --region eastus \
+     --cloud AWS \
+     --region useast1 \
      --type mcp_server \
      --endpoint https://mcp.zapier.com/api/mcp/s/<<long-API-key>> \
      --api-key api_key \
@@ -345,7 +316,7 @@ terraform destroy --auto-approve
 - [ ] Set up Zapier MCP server and copied SSE endpoint URL
 - [ ] Installed required software (Terraform, Confluent CLI, Docker)
 - [ ] Cloned repository and configured `terraform.tfvars`
-- [ ] [AWS only] Enabled Claude Sonnet 3.7 in Bedrock
+- [ ] Enabled Claude Sonnet 3.7 in Bedrock
 - [ ] Deployed infrastructure with Terraform
 - [ ] Generated sample data with ShadowTraffic
 
