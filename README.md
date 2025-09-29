@@ -199,19 +199,7 @@ To enable **Claude 3.7 Sonnet** in your AWS account via Amazon Bedrock:
 <details>
 <summary>Deploying on AWS</summary>
 
-1. Enable the `providers-aws.tf` file
-
-macOS:
-
-```bash
-mv providers-aws.tf.disabled providers-aws.tf 
-```
-Windows:
-
-```bash
-rename providers-aws.tf.disabled providers-aws.tf
-```
-2. Apply the terraform script
+1. Apply the terraform script
 
 ```bash
 terraform init
